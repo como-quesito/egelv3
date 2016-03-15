@@ -66,6 +66,7 @@ public class ControladorProfesores {
 /*
 POST GUARDAR PROFESOR
  */
+    @CrossOrigin
     @RequestMapping(value = "/profesor", method = RequestMethod.POST, headers = {"Accept=application/json"})
     @ResponseBody
     String guardarProfesor(@RequestBody String json) throws Exception {
@@ -104,7 +105,7 @@ POST GUARDAR PROFESOR
 
      */
 
-
+@CrossOrigin
     @RequestMapping(value = "/reactivo", method = RequestMethod.POST, headers = {"Accept=application/json"})
     @ResponseBody
     String guardarReactivo(@RequestBody String json) throws Exception {
@@ -128,7 +129,7 @@ POST GUARDAR PROFESOR
 
         return json;
     }
-
+@CrossOrigin
     @RequestMapping(value = "/borrar-pregunta/{indice}/{clave}", method = RequestMethod.GET, headers = {"Accept=text/html"})
     @ResponseBody
     String borrarPregunta(@PathVariable Integer indice, @PathVariable String clave) throws Exception {
@@ -142,6 +143,7 @@ POST GUARDAR PROFESOR
 /*
 GUARDAR IMAGEN ELN MONGODB
  */
+    @CrossOrigin
     @RequestMapping(value="/cargar-mongo1", method= RequestMethod.POST, headers={"Accept=text/html"})
     public @ResponseBody
     String handleFileUpload(@RequestParam("file") MultipartFile file)throws Exception{
@@ -177,8 +179,10 @@ GUARDAR IMAGEN ELN MONGODB
     /*
     Para leer la imagen DE MONGODB
     */
+
     @RequestMapping(value="/leer-imagen/{nombre:.+}", method= RequestMethod.GET)
     public @ResponseBody
+    @CrossOrigin
     byte[] culera2(HttpServletResponse response, @PathVariable String nombre)throws IOException {
         GridFSDBFile filesito=gridFsTemplate.findOne(new Query(Criteria.where("filename").is(nombre)));
         File imageFile=new File(nombre);
@@ -196,6 +200,7 @@ EXAMENSITOOOOO
  */
     @RequestMapping(value="/examen", method= RequestMethod.GET, headers={"Accept=application/json"})
     @ResponseBody
+    @CrossOrigin
     String examinar()throws Exception{
         String json="";
         ArrayList<Reactivo> reactivos=new ArrayList<>();
@@ -212,6 +217,7 @@ EXAMENSITOOOOO
      */
     @RequestMapping(value="/profesor/{tema}", method= RequestMethod.GET, headers={"Accept=application/json"})
     @ResponseBody
+    @CrossOrigin
     String examinarPorTema(@PathVariable String tema)throws Exception{
         String json="";
         ArrayList<Reactivo> reactivos=new ArrayList<>();

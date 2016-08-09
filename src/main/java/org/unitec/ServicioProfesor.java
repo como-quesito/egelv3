@@ -45,6 +45,11 @@ public  class ServicioProfesor {
         return profesor;
     }
 
+    public Profesor obtenerPorId(String id){
+        Profesor profesor= mongoTemplate.findOne(new Query(Criteria.where("id").is(id)), Profesor.class);
+        return profesor;
+    }
+
     public Profesor obtenerPorLogin(String login){
         Profesor profesor= mongoTemplate.findOne(new Query(Criteria.where("login").is(login)), Profesor.class);
         System.out.println("CANSADO"+profesor.getAutoridad());

@@ -48,8 +48,33 @@ public class ControladorProfesores {
 
         ArrayList<Profesor> profesores = new ArrayList<>();
         profesores= (ArrayList<Profesor>) servicioProfesor.obtenerTodos();
+        System.out.println("SE ha activado todos los profes");
         return profesores;
     }
+
+
+    @CrossOrigin
+    @RequestMapping(value="/profesor/{id}",
+            method=RequestMethod.GET, headers={"Accept=application/json"})
+    @ResponseBody String obtenerPorIdRest(@PathVariable String id)throws Exception{
+        MensajeMongutio mm=new  MensajeMongutio();
+
+        System.out.println("SE ACTIVO Bucar    "+id);
+
+         Profesor pro=  servicioProfesor.obtenerPorId(id);
+        // mm.setTitulo(titulo);
+        //  mm.setCuerpo(cuerpo);
+        /// servicio.agregarMensaje(mm);
+        ObjectMapper maper=new ObjectMapper();
+        System.out.println(maper.writeValueAsString(pro));
+        return maper.writeValueAsString(pro);
+
+
+    }
+
+
+
+
     @CrossOrigin
     @RequestMapping(value="/profesor-autenticar", method= RequestMethod.POST, headers={"Accept=application/json"})
     @ResponseBody String autenticar(@RequestBody String json) throws Exception{
@@ -106,7 +131,7 @@ POST GUARDAR PROFESOR
      */
 
 @CrossOrigin
-    @RequestMapping(value = "/reactivo", method = RequestMethod.POST, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/reactivo-malo", method = RequestMethod.POST, headers = {"Accept=application/json"})
     @ResponseBody
     String guardarReactivo(@RequestBody String json) throws Exception {
         String mensaje="nada :'(";
@@ -215,7 +240,7 @@ EXAMENSITOOOOO
 
     EXAMENSITO POR TEMAAAAA!!!!!
      */
-    @RequestMapping(value="/profesor/{tema}", method= RequestMethod.GET, headers={"Accept=application/json"})
+    @RequestMapping(value="/profesor-tema/{tema}", method= RequestMethod.GET, headers={"Accept=application/json"})
     @ResponseBody
     @CrossOrigin
     String examinarPorTema(@PathVariable String tema)throws Exception{
@@ -234,6 +259,7 @@ METODO AUXILIAR
     private Map<String, String> getMap(String json) throws IOException {
         Map<String,String> map = new HashMap<String,String>();
         ObjectMapper mapper = new ObjectMapper();
+
         //convert JSON string to Map
         map = mapper.readValue(json,
                 new TypeReference<HashMap<String,String>>(){});

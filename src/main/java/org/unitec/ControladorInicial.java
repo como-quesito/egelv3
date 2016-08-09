@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/")
 public class ControladorInicial {
-    @RequestMapping(value="/", method = RequestMethod.GET, headers = {"Accept=text/html"})
-    @ResponseBody
+    @RequestMapping("/")
     String inicio(){
-        return "Egel v3";
+        return "index.html";
     }
 
 }

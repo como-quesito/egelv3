@@ -1,13 +1,44 @@
 package org.unitec;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.ArrayList;
 
 /**
  * Created by campitos on 21/08/15.
  */
 public class Reactivo {
+    @Id
+    String id;
+
+    boolean validado;
+
+    public boolean isValidado() {
+        return validado;
+    }
+
+    public void setValidado(boolean validado) {
+        this.validado = validado;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     String tema;
+    Integer claveProfesor;
+
+    public Integer getClaveProfesor() {
+        return claveProfesor;
+    }
+
+    public void setClaveProfesor(Integer claveProfesor) {
+        this.claveProfesor = claveProfesor;
+    }
 
     String pregunta;
     String retroalimentacion;

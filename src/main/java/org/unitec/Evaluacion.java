@@ -9,6 +9,16 @@ public class Evaluacion {
 
     String tema;
     float calificacion;
+    int intentos;
+
+    public int getIntentos() {
+        return intentos;
+    }
+
+    public void setIntentos(int intentos) {
+        this.intentos = intentos;
+    }
+
     DateTime fecha;
 
     public Evaluacion(String tema, float calificacion, DateTime fecha) {

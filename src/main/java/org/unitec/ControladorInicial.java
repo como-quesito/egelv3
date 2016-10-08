@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by campitos on 14/01/16.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/egel")
 public class ControladorInicial {
     @RequestMapping("/")
     String inicio(){
